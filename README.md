@@ -7,3 +7,5 @@
   + `npm  run develop`
 - 项目发布
   + `npm  run publish`
+- gulp和webpack集成
+  + `npm run  deploy`
