@@ -14,7 +14,7 @@ export default class Hello extends Component {
     render() {
         return (
             <div>
-                <h1 style={style}>你好 7期！</h1>
+                <h1 style={style}>你好fdf dfd  7期！</h1>
                 <br/>
                 <img/>
             </div>
