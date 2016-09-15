@@ -26,7 +26,7 @@ module.exports = {
                 test: /\.jsx?$/, // 用正则来匹配文件路径，这段意思是匹配 js 或者 jsx
                 loader: 'babel',// 加载模块 "babel" 是 "babel-loader" 的缩写
                 query: {
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'react','stage-0','stage-1','stage-2','stage-3']
                 }
             },
             // 处理js中引用的css
@@ -54,6 +54,27 @@ module.exports = {
 
         ]
     },
+    resolve: {
+        // 自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名
+        // 注意一下, extensions 第一个是空字符串! 对应不需要后缀的情况.
+        extensions: ['', '.js', '.json', '.scss', '.jsx'],
+        // 模块别名定义，方便后续直接引用别名，无须多写长长的地址。后续直接 require('AppStore') 即可
+        alias: {
+            AppStore: 'js/stores/AppStores.js',
+            ActionType: 'js/actions/ActionType.js',
+            AppAction: 'js/actions/AppAction.js'
+        }
+    },
+    // 在这个属性里面定义的包是不会被打包进bundle。js文件中的,如果你要用这个属性，别忘了在index。html中引入cdn
+    //externals: {
+    //    配置了这个属性之后react和react-dom这些第三方的包都不会被构建进js中，那么我们就需要通过cdn进行文件的引用了
+    //    // 前边这个名称是在项目中引用用的，相当于import React from  ‘react1’中的react，
+    //    //'react1':"react",
+    //    'react1':"react",
+    //    'react-dom1':"react-dom",
+    //     '$1':"jQuery"
+    //
+    //},
     plugins: [
         // 分离第三方应用插件,name属性会自动指向entry中vendros属性，filename属性中的文件会自动构建到output中的path属性下面
         new webpack.optimize.CommonsChunkPlugin({name:'vendors', filename:'vendors.js'}),
